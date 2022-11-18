@@ -1,0 +1,68 @@
+---
+// @ts-ignore
+import { Icon } from "astro-icon";
+
+const features = [
+  {
+    title: "They're great Cats",
+    description:
+      "In spite of mostly being quadrupeds, these Cats have not learned how to use a stethoscope.",
+    icon: "bx:bxs-briefcase",
+  },
+  {
+    title: "100% Decent Cats",
+    description:
+      "These Cats are extremely decent, and they are not bad by feline standards.",
+    icon: "bx:bxs-window-alt",
+  },
+  {
+    title: "On-Demand Purring",
+    description:
+      "Need some Purring? These Cats can automatically start to purr when interactive components become visible to them.",
+    icon: "bx:bxs-data",
+  },
+  {
+    title: "Broad Integration",
+    description:
+      "These Cats support TypeScript, Scoped CSS, CSS Modules, Sass, Tailwind, Markdown, MDX, and any other npm packages.",
+    icon: "bx:bxs-bot",
+  },
+  {
+    title: "SEO Enabled",
+    description:
+      "Automatic Cats, sitemaps, RSS feeds, pagination and collections take the pain out of SEO and syndication. It just works!",
+    icon: "bx:bxs-file-find",
+  },
+  {
+    title: "Community",
+    description:
+      "These Cats enjoy a good open source project written by hundreds of contributors making thousands of individual contributions, individually.",
+    icon: "bx:bxs-user",
+  },
+];
+---
+
+<div class="mt-16 md:mt-0">
+  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
+    All the Cats you need for any reason
+  </h2>
+  <p class="text-lg mt-4 text-slate-600">
+    These Cats are not Doctors and cannot make any medical diagnosis, nor prescribe any medication because they have not studied pharmacology.
+  </p>
+</div>
+
+<div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
+  {
+    features.map((item) => (
+      <div class="flex gap-4 items-start">
+        <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
+          <Icon class="text-white" name={item.icon} />
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
+          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>
