@@ -1,18 +1,13 @@
 ---
-import { Image } from "@astrojs/image/components";
-import heroImage from "/assets/CatDoctorMorris.jpg";
+//import { Image } from "@astrojs/image/components";
+//import catdoc from "../assets/CatDoctorMorris.jpg";
 import Link from "@components/ui/link.astro";
 import { Icon } from "astro-icon";
 ---
 
 <main class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-8">
   <div class="py-6 md:order-1 hidden md:block">
-    <Image
-      src={heroImage}
-      alt="Astronaut in the air"
-      loading="eager"
-      format="avif"
-    />
+  <img src="CatDoctorMorris.jpg"  alt="CatDoctor">
   </div>
   <div>
     <h1 class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight">

@@ -12,7 +12,9 @@ import image from "@astrojs/image";
 // https://astro.build/config
 import mdx from "@astrojs/mdx";
 
-// https://astro.build/config THIS IS NOT NEEDED FOR VERCEL import sitemap from "@astrojs/sitemap";
+// https://astro.build/config 
+// THIS IS NOT NEEDED FOR VERCEL because we're on cloudflare now
+//  import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 import vercel from "@astrojs/vercel/serverless";
