@@ -2,7 +2,7 @@
   "name": "@catsnotdoctors/astroship",
   "description": "A website for Cats who are not Doctors.",
   "type": "module",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "scripts": {
     "dev": "astro dev",
