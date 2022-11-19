@@ -7,19 +7,8 @@ import tailwind from "@astrojs/tailwind";
 import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
-// import image from "@astrojs/image";
-
-// https://astro.build/config
 import mdx from "@astrojs/mdx";
 
-// https://astro.build/config 
-// THIS IS NOT NEEDED FOR VERCEL because we're on cloudflare now
-//  import sitemap from "@astrojs/sitemap";
-
-// https://astro.build/config
-// import vercel from "@astrojs/vercel/serverless";
-
-// https://astro.build/config
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
