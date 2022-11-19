@@ -14,11 +14,8 @@
   "dependencies": {
     "@astrojs/alpinejs": "^0.1.2",
     "@astrojs/cloudflare": "^4.0.1",
-    "@astrojs/image": "^0.11.0",
     "@astrojs/mdx": "^0.11.5",
-    "@astrojs/sitemap": "^1.0.0",
     "@astrojs/tailwind": "^2.1.1",
-    "@astrojs/vercel": "^2.3.4",
     "@fontsource/inter": "^4.5.14",
     "@types/alpinejs": "^3.0.0",
     "alpinejs": "^3.0.0",

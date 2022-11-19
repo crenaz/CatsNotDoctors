@@ -7,7 +7,7 @@ import tailwind from "@astrojs/tailwind";
 import alpinejs from "@astrojs/alpinejs";
 
 // https://astro.build/config
-import image from "@astrojs/image";
+// import image from "@astrojs/image";
 
 // https://astro.build/config
 import mdx from "@astrojs/mdx";
@@ -17,7 +17,7 @@ import mdx from "@astrojs/mdx";
 //  import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
-import vercel from "@astrojs/vercel/serverless";
+// import vercel from "@astrojs/vercel/serverless";
 
 // https://astro.build/config
 import cloudflare from "@astrojs/cloudflare";
@@ -25,7 +25,7 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   site: "https://cats-not-doctors.vercel.app/",
-  integrations: [tailwind(), alpinejs(), image(), mdx()],
+  integrations: [tailwind(), alpinejs(), mdx()],
   output: "server",
   adapter: cloudflare()
 });
