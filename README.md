@@ -1,4 +1,4 @@
-OK, so I'm going to be using this template for a quick site just as an example, and also an opportunity to work with Tailwind and Alpine. 
+OK, so this example site is made with Astro and also is an opportunity to work with Tailwind and Alpine. 
 
 ! ORIGINAL README BELOW !
 
