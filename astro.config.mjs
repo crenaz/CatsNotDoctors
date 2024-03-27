@@ -9,12 +9,12 @@ import alpinejs from "@astrojs/alpinejs";
 // https://astro.build/config
 import mdx from "@astrojs/mdx";
 
-import cloudflare from "@astrojs/cloudflare";
+//import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   site: "https://cats-not-doctors.vercel.app/",
   integrations: [tailwind(), alpinejs(), mdx()],
-  output: "server",
-  adapter: cloudflare()
+  //output: "server",
+  //adapter: cloudflare()
 });
