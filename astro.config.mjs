@@ -29,8 +29,8 @@ export default defineConfig({
         type: "pages",
         noServe: true,
       },
-      // Explicitly disable sessions
       persistSession: false,
+      kvNamespace: false,
     }),
   }),
   image: {
