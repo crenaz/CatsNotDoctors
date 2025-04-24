@@ -2,25 +2,35 @@ import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import alpinejs from "@astrojs/alpinejs";
 import mdx from "@astrojs/mdx";
-import cloudflare from "@astrojs/cloudflare";
 import react from "@astrojs/react";
+import cloudflare from "@astrojs/cloudflare";
+
+const isProd = process.env.NODE_ENV === "production";
 
 export default defineConfig({
-  site: "https://catsnotdoctors.pages.dev",
-  integrations: [tailwind(), alpinejs(), mdx(), react()],
+  site: isProd ? "https://catsnotdoctors.pages.dev" : "http://localhost:3000",
+  integrations: [
+    tailwind(),
+    alpinejs(),
+    mdx({
+      syntaxHighlight: "prism",
+      gfm: true,
+      smartypants: true,
+      remarkPlugins: [],
+      rehypePlugins: [],
+    }),
+    react(),
+  ],
   output: "server",
-  adapter: cloudflare({
-    mode: "directory",
-    imageService: "passthrough",
-    runtime: {
-      mode: "local",
-      type: "pages",
-      bindings: {
-        SESSION: {
-          type: "kv",
-        },
+  ...(isProd && {
+    adapter: cloudflare({
+      mode: "directory",
+      imageService: "passthrough",
+      runtime: {
+        mode: "local",
+        type: "pages",
       },
-    },
+    }),
   }),
   image: {
     service: {
