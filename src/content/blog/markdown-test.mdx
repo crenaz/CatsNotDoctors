@@ -1,0 +1,72 @@
+---
+title: "Markdown & MDX Test Post"
+description: "A test post showcasing all markdown and MDX features"
+publishDate: 2024-01-21
+author: "Tech Cat"
+tags: ["markdown", "mdx", "test"]
+---
+import Note from '@components/mdx/Note.astro';
+
+# Markdown Examples
+
+This post demonstrates various markdown and MDX features.
+
+## Text Formatting
+
+**Bold text** and *italic text* are supported.
+
+## Lists
+
+Unordered list:
+- Item 1
+- Item 2
+  - Nested item
+  - Another nested item
+- Item 3
+
+Ordered list:
+1. First item
+2. Second item
+3. Third item
+
+## Code Blocks
+
+```javascript
+function hello() {
+  console.log("Hello, world!");
+}
+```
+
+Inline `code` is also supported.
+
+## Blockquotes
+
+> This is a blockquote.
+> It can span multiple lines.
+
+## Custom Components
+
+<Note>
+  This is a custom note component!
+</Note>
+
+<Note type="warning">
+  This is a warning message.
+</Note>
+
+<Note type="error">
+  This is an error message.
+</Note>
+
+## Tables
+
+| Header 1 | Header 2 |
+|----------|----------|
+| Cell 1   | Cell 2   |
+| Cell 3   | Cell 4   |
+
+## Links and Images
+
+[Link to external site](https://example.com)
+
+![Alt text for image](https://placekitten.com/800/400)

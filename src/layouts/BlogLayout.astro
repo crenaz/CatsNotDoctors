@@ -1,0 +1,63 @@
+---
+import Layout from "./Layout.astro";
+import Container from "@components/container.astro";
+import { getFormattedDate } from "@utils/all";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title}>
+  <Container>
+    <div class="mx-auto max-w-3xl mt-14">
+      <span class="text-blue-400 uppercase tracking-wider text-sm font-medium">
+        {frontmatter.tags.map((tag: string) => (
+          <span class="mr-2">#{tag}</span>
+        ))}
+      </span>
+      <h1
+        class="text-4xl lg:text-5xl font-bold lg:tracking-tight mt-1 lg:leading-tight">
+        {frontmatter.title}
+      </h1>
+      <div class="flex gap-2 mt-3 items-center flex-wrap md:flex-nowrap">
+        <span class="text-gray-400">
+          {frontmatter.author}
+        </span>
+        <span class="text-gray-400">•</span>
+        <time class="text-gray-400" datetime={frontmatter.publishDate.toISOString()}>
+          {getFormattedDate(frontmatter.publishDate)}
+        </time>
+      </div>
+    </div>
+
+    <div class="mx-auto prose prose-lg mt-6 max-w-3xl dark:prose-invert prose-img:rounded-xl">
+      <slot />
+    </div>
+  </Container>
+</Layout>
+
+<style is:global>
+  /* Custom styles for markdown content */
+  .prose {
+    @apply prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white;
+    @apply prose-p:text-gray-700 dark:prose-p:text-gray-300;
+    @apply prose-a:text-blue-500 prose-a:no-underline hover:prose-a:underline;
+    @apply prose-strong:text-gray-900 dark:prose-strong:text-white;
+    @apply prose-code:text-gray-900 dark:prose-code:text-white;
+    @apply prose-pre:bg-gray-900 dark:prose-pre:bg-gray-800;
+    @apply prose-blockquote:text-gray-700 dark:prose-blockquote:text-gray-300;
+    @apply prose-blockquote:border-l-blue-500;
+    @apply prose-img:rounded-lg prose-img:shadow-lg;
+  }
+
+  .prose pre {
+    @apply rounded-lg;
+  }
+
+  .prose code {
+    @apply text-sm px-1 py-0.5 rounded-md bg-gray-100 dark:bg-gray-800;
+  }
+
+  .prose pre code {
+    @apply text-sm px-0 bg-transparent;
+  }
+</style>

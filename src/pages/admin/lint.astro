@@ -1,0 +1,86 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Container from "@components/container.astro";
+import { getCollection } from "astro:content";
+import { lintBlogPost } from "@utils/blogLinter";
+
+const posts = await getCollection("blog");
+const lintResults = posts.map(post => lintBlogPost(post));
+const totalIssues = lintResults.reduce((acc, result) => acc + result.issues.length, 0);
+const sortedResults = lintResults.sort((a, b) => b.issues.length - a.issues.length);
+---
+
+<Layout title="Blog Linter">
+  <Container>
+    <div class="mt-16">
+      <h1 class="text-4xl font-bold mb-8">Blog Post Linter</h1>
+      
+      <div class="mb-8 p-4 bg-gray-100 dark:bg-gray-800 rounded-lg">
+        <p class="text-lg">
+          Found {totalIssues} issues across {posts.length} posts
+        </p>
+      </div>
+
+      <div class="space-y-8">
+        {sortedResults.map((result) => (
+          <div class="border dark:border-gray-700 rounded-lg p-6">
+            <div class="flex justify-between items-start mb-4">
+              <div>
+                <h2 class="text-xl font-semibold">
+                  <a href={`/blog/${result.slug}`} class="hover:text-blue-500">
+                    {result.title}
+                  </a>
+                </h2>
+                <p class="text-gray-500 dark:text-gray-400 text-sm">
+                  {result.slug}
+                </p>
+              </div>
+              <span class:list={[
+                "px-3 py-1 rounded-full text-sm font-medium",
+                {
+                  "bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-200": result.issues.length === 0,
+                  "bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200": result.issues.length > 0 && result.issues.length < 3,
+                  "bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200": result.issues.length >= 3
+                }
+              ]}>
+                {result.issues.length} issues
+              </span>
+            </div>
+
+            {result.issues.length > 0 && (
+              <div class="space-y-2">
+                {result.issues.map((issue) => (
+                  <div class:list={[
+                    "border-l-4 p-4",
+                    {
+                      "border-red-500 bg-red-50/50 dark:bg-red-900/10": issue.type === 'error',
+                      "border-yellow-500 bg-yellow-50/50 dark:bg-yellow-900/10": issue.type === 'warning',
+                      "border-blue-500 bg-blue-50/50 dark:bg-blue-900/10": issue.type === 'info'
+                    }
+                  ]}>
+                    <div class="flex items-center gap-2">
+                      <span class="inline-flex items-center justify-center w-5 h-5 rounded-full text-xs" class:list={{
+                        "text-red-500 dark:text-red-400": issue.type === 'error',
+                        "text-yellow-500 dark:text-yellow-400": issue.type === 'warning',
+                        "text-blue-500 dark:text-blue-400": issue.type === 'info'
+                      }}>
+                        {issue.type === 'error' ? '!' : issue.type === 'warning' ? '⚠' : 'i'}
+                      </span>
+                      <span class="font-medium capitalize">{issue.type}:</span>
+                      <span>{issue.message}</span>
+                    </div>
+                    {issue.location && (
+                      <div class="text-sm mt-1 opacity-75 ml-7">
+                        Location: <code class="px-1 py-0.5 rounded bg-gray-100 dark:bg-gray-800">{issue.location}</code>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </Container>
+</Layout>

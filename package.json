@@ -1,0 +1,41 @@
+{
+  "name": "@catsnotdoctors/astroship",
+  "description": "A website for Cats who are not Doctors.",
+  "type": "module",
+  "version": "0.0.3",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev --config astro.config.dev.mjs",
+    "start": "astro dev --config astro.config.dev.mjs",
+    "build": "astro build --config astro.config.prod.mjs",
+    "preview": "astro preview --config astro.config.prod.mjs",
+    "astro": "astro",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@astrojs/alpinejs": "0.4.6",
+    "@astrojs/cloudflare": "^12.5.0",
+    "@astrojs/mdx": "^4.2.4",
+    "@astrojs/react": "^4.2.4",
+    "@astrojs/tailwind": "^6.0.2",
+    "@types/alpinejs": "^3.13.11",
+    "alpinejs": "^3.14.9",
+    "astro": "^5.7.4",
+    "astro-feather-icons": "^1.0.2",
+    "astro-icon": "^0.8.2",
+    "astro-seo": "^0.8.4",
+    "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.16",
+    "@vitejs/plugin-react": "^4.2.0",
+    "vitest": "^1.2.0",
+    "@vitest/ui": "^1.2.0",
+    "@testing-library/react": "^14.1.2",
+    "@testing-library/jest-dom": "^6.1.5",
+    "jsdom": "^24.0.0",
+    "happy-dom": "^13.3.8"
+  }
+}

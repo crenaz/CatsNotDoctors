@@ -1,0 +1,14 @@
+---
+const { type = "note" } = Astro.props;
+---
+
+<div class={[
+  "border-l-4 p-4 my-6",
+  {
+    "bg-blue-50 border-blue-500 dark:bg-blue-900/30": type === "note",
+    "bg-yellow-50 border-yellow-500 dark:bg-yellow-900/30": type === "warning",
+    "bg-red-50 border-red-500 dark:bg-red-900/30": type === "error",
+  },
+]}>
+  <slot />
+</div>
