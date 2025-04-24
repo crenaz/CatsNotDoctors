@@ -20,18 +20,23 @@ export default defineConfig({
     react(),
   ],
   output: "server",
-  ...(isProd && {
-    adapter: cloudflare({
-      mode: "directory",
-      imageService: "passthrough",
-      runtime: {
-        mode: "local",
-        type: "pages",
-        noServe: true,
-      },
-      persistSession: false,
-      kvNamespace: false,
-    }),
+  adapter: cloudflare({
+    mode: "directory",
+    imageService: "passthrough",
+    runtime: {
+      mode: "local",
+      type: "pages",
+      noServe: true,
+    },
+    // Disable all runtime features
+    runtime: {
+      mode: "off",
+    },
+    // Explicitly disable all Cloudflare features
+    persistSession: false,
+    kvNamespace: false,
+    d1Databases: false,
+    r2Buckets: false,
   }),
   image: {
     service: {
@@ -41,6 +46,9 @@ export default defineConfig({
   vite: {
     build: {
       target: "esnext",
+    },
+    ssr: {
+      external: ["os", "fs", "path", "url"],
     },
   },
 });
