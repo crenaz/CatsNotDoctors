@@ -5,8 +5,6 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 
 const isProd = process.env.NODE_ENV === "production";
-
-// Only import cloudflare adapter in production
 const cloudflare = isProd
   ? (await import("@astrojs/cloudflare")).default
   : null;
@@ -23,24 +21,21 @@ export default defineConfig({
     }),
     react(),
   ],
-  output: isProd ? "server" : "static",
-  ...(isProd && {
-    adapter: cloudflare({
-      mode: "directory",
-      imageService: "passthrough",
-      runtime: {
-        mode: "local",
-        type: "pages",
-      },
-      persistSession: false,
-      kvNamespace: false,
-    }),
-  }),
-  image: {
-    service: {
-      entrypoint: "astro/assets/services/noop",
-    },
-  },
+  output: "server",
+  adapter: isProd
+    ? cloudflare({
+        mode: "directory",
+        runtime: {
+          mode: "local",
+          type: "pages",
+          bindings: {
+            SESSION: {
+              type: "kv",
+            },
+          },
+        },
+      })
+    : undefined,
   vite: {
     build: {
       target: "esnext",
@@ -49,18 +44,5 @@ export default defineConfig({
       external: ["os", "fs", "path", "url"],
     },
     assetsInclude: ["**/*.md"],
-    plugins: [
-      {
-        name: "vite-plugin-raw",
-        transform(_, id) {
-          if (id.endsWith("?raw")) {
-            return {
-              code: `export default ${JSON.stringify(id)}`,
-              map: null,
-            };
-          }
-        },
-      },
-    ],
   },
 });

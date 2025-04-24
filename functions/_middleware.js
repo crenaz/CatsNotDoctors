@@ -2,8 +2,13 @@ export async function onRequest({ next, env }) {
   try {
     return await next();
   } catch (err) {
-    // Log the error (you might want to use a proper logging service)
-    console.error("Server Error:", err);
+    // Enhanced error logging
+    console.error("Server Error Details:", {
+      message: err.message,
+      stack: err.stack,
+      type: err.name,
+      code: err.code,
+    });
 
     // In development, return detailed error
     if (env.NODE_ENV === "development") {
@@ -18,12 +23,16 @@ export async function onRequest({ next, env }) {
 
     // In production, return a user-friendly error
     return new Response(
-      "Sorry, something went wrong on our end. Please try again later.",
+      JSON.stringify({
+        error: "Internal Server Error",
+        message:
+          "Sorry, something went wrong on our end. Please try again later.",
+      }),
       {
         status: 500,
         statusText: "Internal Server Error",
         headers: {
-          "Content-Type": "text/plain",
+          "Content-Type": "application/json",
         },
       }
     );
