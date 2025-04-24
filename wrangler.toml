@@ -1,9 +1,14 @@
 name = "catsnotdoctors"
 compatibility_date = "2024-04-24"
+main = "workers-site/index.js"
 
 [build]
 command = "pnpm build"
-output_dir = "dist"
 
 [site]
 bucket = "./dist"
+
+[[kv_namespaces]]
+binding = "SESSION"
+id = "c367b47d894543f3b04176abef5e7282"
+preview_id = "a716d301f54a4d3ebad95a35b88ca95c"
