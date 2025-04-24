@@ -16,8 +16,6 @@ export default defineConfig({
       syntaxHighlight: "prism",
       gfm: true,
       smartypants: true,
-      remarkPlugins: [],
-      rehypePlugins: [],
     }),
     react(),
   ],
@@ -29,7 +27,10 @@ export default defineConfig({
       runtime: {
         mode: "local",
         type: "pages",
+        noServe: true,
       },
+      // Explicitly disable sessions
+      persistSession: false,
     }),
   }),
   image: {
