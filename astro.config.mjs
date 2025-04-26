@@ -41,8 +41,15 @@ export default defineConfig({
       target: "esnext",
     },
     ssr: {
-      external: ["os", "fs", "path", "url"],
+      noExternal: true, // This forces all dependencies to be bundled
+      external: [], // Empty array to override the default Node.js built-ins
     },
     assetsInclude: ["**/*.md"],
+    define: {
+      // Polyfill Node.js globals
+      "process.env": process.env,
+      "process.platform": JSON.stringify("browser"),
+      "process.version": JSON.stringify(""),
+    },
   },
 });
