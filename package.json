@@ -4,12 +4,13 @@
   "version": "0.0.1",
   "packageManager": "pnpm@8.7.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "ASTRO_ADAPTER_MODE=local astro dev --host",
+    "dev:cf": "astro dev --host",
     "start": "astro dev",
     "build": "patch-package && astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "postinstall": "echo 'Skipping patch-package temporarily'",
+    "postinstall": "patch-package",
     "apply-patches": "patch-package"
   },
   "dependencies": {
@@ -18,18 +19,25 @@
     "@astrojs/mdx": "^4.2.4",
     "@astrojs/react": "^4.2.4",
     "@astrojs/tailwind": "^6.0.2",
+    "@iconify/astro": "^1.0.1",
     "@tailwindcss/typography": "^0.5.10",
     "@types/alpinejs": "^3.13.11",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.1.2",
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
     "alpinejs": "^3.14.9",
     "astro": "^5.7.4",
     "astro-feather-icons": "^1.0.2",
-    "astro-icon": "^0.8.2",
     "astro-seo": "^0.8.4",
     "os": "^0.1.2",
     "patch-package": "^8.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "sharp": "^0.34.1",
     "tailwindcss": "^3.4.17"
+  },
+  "devDependencies": {
+    "@astrojs/node": "^9.2.1",
+    "@testing-library/react": "^16.3.0",
+    "vitest": "^3.1.2"
   }
 }

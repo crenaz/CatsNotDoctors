@@ -1,15 +1,12 @@
 name = "catsnotdoctors"
 compatibility_date = "2024-04-24"
-
-[pages]
-pages_build_output_dir = "dist"
+main = "./dist/_worker.js"
 
 [build]
 command = "pnpm build"
 
-[build.upload]
-format = "directory"
-dir = "dist"
+[site]
+bucket = "dist"
 
 [[kv_namespaces]]
 binding = "SESSION"

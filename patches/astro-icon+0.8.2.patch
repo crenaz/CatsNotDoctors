@@ -1,0 +1,21 @@
+diff --git a/node_modules/astro-icon/lib/utils.ts b/node_modules/astro-icon/lib/utils.ts
+index 1234567..abcdefg 100644
+--- a/node_modules/astro-icon/lib/utils.ts
++++ b/node_modules/astro-icon/lib/utils.ts
+@@ -1,5 +1,5 @@
+ import { promises as fs } from "fs";
+-import { optimize } from "svgo";
++import svgo from "svgo";
+ import { resolve as resolvePath } from "path";
+ import { fileURLToPath } from "url";
+ import { resolve } from "resolve-pkg";
+@@ -22,7 +22,8 @@ export function normalizeProps(props: Record<string, any>) {
+ }
+ 
+ export function optimizeSvg(content: string, name = "icon") {
+-  const result = optimize(content, {
++  const optimize = svgo.optimize || svgo;
++  const result = optimize(content, {
+     plugins: [
+       {
+         name,

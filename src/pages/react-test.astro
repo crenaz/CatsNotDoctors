@@ -1,0 +1,11 @@
+---
+import Layout from '../layouts/Layout.astro';
+import TestReact from '../components/TestReact';
+---
+
+<Layout title="React Test">
+  <main class="container mx-auto p-4">
+    <h1 class="text-3xl font-bold mb-4">Testing React Integration</h1>
+    <TestReact client:load />
+  </main>
+</Layout>
