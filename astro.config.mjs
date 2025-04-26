@@ -3,53 +3,52 @@ import tailwind from "@astrojs/tailwind";
 import alpinejs from "@astrojs/alpinejs";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
+import cloudflare from "@astrojs/cloudflare";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const isProd = process.env.NODE_ENV === "production";
-const cloudflare = isProd
-  ? (await import("@astrojs/cloudflare")).default
-  : null;
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Create a custom module polyfill
+const modulePolyfill = `
+  if (typeof globalThis.module === 'undefined') {
+    globalThis.module = { exports: {} };
+  }
+  if (typeof globalThis.exports === 'undefined') {
+    globalThis.exports = globalThis.module.exports;
+  }
+`;
 
 export default defineConfig({
-  site: isProd ? "https://catsnotdoctors.pages.dev" : "http://localhost:3000",
-  integrations: [
-    tailwind(),
-    alpinejs(),
-    mdx({
-      syntaxHighlight: "prism",
-      gfm: true,
-      smartypants: true,
-    }),
-    react(),
-  ],
   output: "server",
-  adapter: isProd
-    ? cloudflare({
-        mode: "directory",
-        runtime: {
-          mode: "local",
-          type: "pages",
-          bindings: {
-            SESSION: {
-              type: "kv",
-            },
-          },
-        },
-      })
-    : undefined,
+  adapter: cloudflare({
+    mode: "directory",
+    functionPerRoute: false,
+  }),
+  integrations: [tailwind(), alpinejs(), mdx(), react()],
+  image: {
+    service: { entrypoint: "astro/assets/services/noop" },
+  },
   vite: {
-    build: {
-      target: "esnext",
+    define: {
+      global: "globalThis",
+      // Only pass specific environment variables instead of the entire process.env
+      "process.env.NODE_ENV": JSON.stringify(
+        process.env.NODE_ENV || "production"
+      ),
+    },
+    optimizeDeps: {
+      include: ["cssesc"],
     },
     ssr: {
-      noExternal: true, // This forces all dependencies to be bundled
-      external: [], // Empty array to override the default Node.js built-ins
+      noExternal: true,
+      external: ["node:*", "sharp"],
     },
-    assetsInclude: ["**/*.md"],
-    define: {
-      // Polyfill Node.js globals
-      "process.env": process.env,
-      "process.platform": JSON.stringify("browser"),
-      "process.version": JSON.stringify(""),
+    build: {
+      minify: false, // For better debugging
+      rollupOptions: {
+        external: ["sharp"],
+      },
     },
   },
 });

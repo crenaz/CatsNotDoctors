@@ -1,15 +1,15 @@
 {
-  "name": "@catsnotdoctors/astroship",
-  "description": "A website for Cats who are not Doctors.",
+  "name": "catsnotdoctors",
   "type": "module",
-  "version": "1.1.0",
-  "private": true,
+  "version": "0.0.1",
+  "packageManager": "pnpm@8.7.1",
   "scripts": {
-    "dev": "NODE_ENV=development astro dev --host",
-    "start": "NODE_ENV=development astro dev --host",
-    "build": "NODE_ENV=production astro build",
-    "preview": "NODE_ENV=production astro preview",
-    "astro": "astro"
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "patch-package && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@astrojs/alpinejs": "0.4.6",
@@ -17,6 +17,7 @@
     "@astrojs/mdx": "^4.2.4",
     "@astrojs/react": "^4.2.4",
     "@astrojs/tailwind": "^6.0.2",
+    "@tailwindcss/typography": "^0.5.10",
     "@types/alpinejs": "^3.13.11",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.1.2",
@@ -25,16 +26,8 @@
     "astro-feather-icons": "^1.0.2",
     "astro-icon": "^0.8.2",
     "astro-seo": "^0.8.4",
+    "patch-package": "^8.0.0",
+    "sharp": "^0.34.1",
     "tailwindcss": "^3.4.17"
-  },
-  "devDependencies": {
-    "@tailwindcss/typography": "^0.5.16",
-    "@vitejs/plugin-react": "^4.2.0",
-    "vitest": "^1.2.0",
-    "@vitest/ui": "^1.2.0",
-    "@testing-library/react": "^14.1.2",
-    "@testing-library/jest-dom": "^6.1.5",
-    "jsdom": "^24.0.0",
-    "happy-dom": "^13.3.8"
   }
 }
