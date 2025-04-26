@@ -1,0 +1,55 @@
+diff --git a/node_modules/os/index.js b/node_modules/os/index.js
+index 889b75f..625fadb 100644
+--- a/node_modules/os/index.js
++++ b/node_modules/os/index.js
+@@ -1 +1,17 @@
+-module.exports = require('os')
++// OS module polyfill for browser/edge environments
++module.exports = {
++  platform: () => "browser",
++  type: () => "Browser",
++  release: () => "Unknown",
++  homedir: () => "/",
++  userInfo: () => ({ username: "user" }),
++  cpus: () => [{ model: "Browser CPU" }],
++  hostname: () => "browser",
++  networkInterfaces: () => ({}),
++  EOL: "\n",
++  endianness: () => "LE",
++  arch: () => "x64",
++  tmpdir: () => "/tmp",
++  totalmem: () => 8589934592,
++  freemem: () => 4294967296
++};
+diff --git a/node_modules/os/index.js.orig b/node_modules/os/index.js.orig
+new file mode 100644
+index 0000000..889b75f
+--- /dev/null
++++ b/node_modules/os/index.js.orig
+@@ -0,0 +1 @@
++module.exports = require('os')
+diff --git a/node_modules/os/index.js.rej b/node_modules/os/index.js.rej
+new file mode 100644
+index 0000000..6ce2d0a
+--- /dev/null
++++ b/node_modules/os/index.js.rej
+@@ -0,0 +1,19 @@
++--- node_modules/os/index.js
+++++ node_modules/os/index.js
++@@ -1,16 +0,0 @@
++-// OS module polyfill for browser/edge environments
++-module.exports = {
++-  platform: () => "browser",
++-  type: () => "Browser",
++-  release: () => "Unknown",
++-  homedir: () => "/",
++-  userInfo: () => ({ username: "user" }),
++-  cpus: () => [{ model: "Browser CPU" }],
++-  hostname: () => "browser",
++-  networkInterfaces: () => ({}),
++-  EOL: "\n",
++-  endianness: () => "LE",
++-  arch: () => "x64",
++-  tmpdir: () => "/tmp",
++-  totalmem: () => 8589934592,
++-  freemem: () => 4294967296

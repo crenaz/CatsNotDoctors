@@ -22,7 +22,6 @@ export default defineConfig({
   vite: {
     define: {
       global: "globalThis",
-      // Only pass specific environment variables instead of the entire process.env
       "process.env.NODE_ENV": JSON.stringify(
         process.env.NODE_ENV || "production"
       ),
@@ -30,12 +29,17 @@ export default defineConfig({
     optimizeDeps: {
       include: ["cssesc"],
     },
+    resolve: {
+      alias: {
+        os: path.resolve(__dirname, "./src/polyfills/os-polyfill.js"),
+      },
+    },
     ssr: {
       noExternal: true,
-      external: ["node:*", "sharp"],
+      external: ["sharp"],
     },
     build: {
-      minify: false, // For better debugging
+      minify: false,
       rollupOptions: {
         external: ["sharp"],
       },

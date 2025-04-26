@@ -1,3 +1,6 @@
+// Import OS polyfill
+import osPolyfill from "./polyfills/os-polyfill.js";
+
 // Polyfill for global objects
 if (typeof globalThis.global === "undefined") {
   globalThis.global = globalThis;
@@ -31,23 +34,8 @@ if (typeof globalThis.process === "undefined") {
   };
 }
 
-// Proper os module polyfill
-globalThis.os = {
-  platform: () => "browser",
-  type: () => "Browser",
-  release: () => "Unknown",
-  homedir: () => "/",
-  userInfo: () => ({ username: "user" }),
-  cpus: () => [{ model: "Browser CPU" }],
-  hostname: () => "browser",
-  networkInterfaces: () => ({}),
-  EOL: "\n",
-  endianness: () => "LE",
-  arch: () => "x64",
-  tmpdir: () => "/tmp",
-  totalmem: () => 8589934592, // 8GB
-  freemem: () => 4294967296, // 4GB
-};
+// Add OS module to global scope
+globalThis.os = osPolyfill;
 
 // Minimal fs module polyfill
 if (typeof globalThis.fs === "undefined") {
