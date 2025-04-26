@@ -32,29 +32,6 @@ const { title, seo } = Astro.props;
           document.documentElement.classList.remove('dark');
       }
     </script>
-
-    <style is:global>
-      html {
-        font-family: system-ui, sans-serif;
-      }
-
-      body {
-        margin: 0;
-        padding: 0;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      [x-cloak] {
-        display: none !important;
-      }
-
-      @media (prefers-reduced-motion: no-preference) {
-        html {
-          scroll-behavior: smooth;
-        }
-      }
-    </style>
   </head>
   <body class="dark:bg-gray-900">
     <Navbar />

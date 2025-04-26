@@ -31,19 +31,23 @@ if (typeof globalThis.process === "undefined") {
   };
 }
 
-// Minimal os module polyfill
-if (typeof globalThis.os === "undefined") {
-  globalThis.os = {
-    platform: () => "browser",
-    type: () => "Browser",
-    release: () => "Unknown",
-    homedir: () => "/",
-    userInfo: () => ({ username: "user" }),
-    cpus: () => [{ model: "Browser CPU" }],
-    hostname: () => "browser",
-    networkInterfaces: () => ({}),
-  };
-}
+// Proper os module polyfill
+globalThis.os = {
+  platform: () => "browser",
+  type: () => "Browser",
+  release: () => "Unknown",
+  homedir: () => "/",
+  userInfo: () => ({ username: "user" }),
+  cpus: () => [{ model: "Browser CPU" }],
+  hostname: () => "browser",
+  networkInterfaces: () => ({}),
+  EOL: "\n",
+  endianness: () => "LE",
+  arch: () => "x64",
+  tmpdir: () => "/tmp",
+  totalmem: () => 8589934592, // 8GB
+  freemem: () => 4294967296, // 4GB
+};
 
 // Minimal fs module polyfill
 if (typeof globalThis.fs === "undefined") {

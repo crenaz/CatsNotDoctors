@@ -9,16 +9,6 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-// Create a custom module polyfill
-const modulePolyfill = `
-  if (typeof globalThis.module === 'undefined') {
-    globalThis.module = { exports: {} };
-  }
-  if (typeof globalThis.exports === 'undefined') {
-    globalThis.exports = globalThis.module.exports;
-  }
-`;
-
 export default defineConfig({
   output: "server",
   adapter: cloudflare({
