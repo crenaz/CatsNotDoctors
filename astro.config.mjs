@@ -20,10 +20,7 @@ export default defineConfig({
   output: "server",
   adapter: isLocalDev
     ? node({ mode: "standalone" })
-    : cloudflare({
-        mode: "directory",
-        functionPerRoute: false,
-      }),
+    : cloudflare(),
   integrations: [
     tailwind(),
     alpinejs(),

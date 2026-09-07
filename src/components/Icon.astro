@@ -1,0 +1,33 @@
+---
+import { getIconData, iconToSVG } from "@iconify/utils";
+import bx from "@iconify-json/bx/icons.json";
+import simpleIcons from "@iconify-json/simple-icons/icons.json";
+import uil from "@iconify-json/uil/icons.json";
+
+const iconSets: Record<string, any> = {
+  bx,
+  "simple-icons": simpleIcons,
+  uil,
+};
+
+const { name, icon = name, class: className, ...rest } = Astro.props;
+
+const [prefix, iconName] = (name || icon || "").split(":");
+const iconSet = iconSets[prefix];
+const data = iconSet ? getIconData(iconSet, iconName) : null;
+const renderData = data ? iconToSVG(data, { height: "1em", width: "1em" }) : null;
+---
+
+{renderData ? (
+  <svg
+    viewBox={`0 0 ${renderData.viewBox[2]} ${renderData.viewBox[3]}`}
+    width={renderData.attributes.width}
+    height={renderData.attributes.height}
+    class={className}
+    set:html={renderData.body}
+    {...rest}
+  />
+) : (
+  <span class={className}>?</span>
+)}
+

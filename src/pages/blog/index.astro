@@ -28,7 +28,7 @@ const sortedPosts = posts.sort(
       {
         sortedPosts.map((post) => (
           <div class="bg-white dark:bg-gray-800 p-5 rounded-lg shadow-md">
-            <a href={`/blog/${post.slug}`}>
+            <a href={`/blog/${post.id}`}>
               <h2 class="text-xl font-semibold text-gray-800 dark:text-white">
                 {post.data.title}
               </h2>
