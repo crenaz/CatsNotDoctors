@@ -15,20 +15,20 @@
   },
   "dependencies": {
     "@astrojs/alpinejs": "^0.4.9",
-    "@astrojs/cloudflare": "^14.4.2",
-    "@astrojs/mdx": "^8.1.1",
+    "@astrojs/cloudflare": "^14.4.9",
+    "@astrojs/mdx": "^8.1.6",
     "@astrojs/react": "^6.0.6",
     "@astrojs/tailwind": "^6.0.2",
     "@iconify-json/bx": "^1.2.3",
-    "@iconify-json/simple-icons": "^1.2.100",
+    "@iconify-json/simple-icons": "^1.2.104",
     "@iconify-json/uil": "^1.2.3",
     "@iconify/utils": "^3.1.7",
     "@tailwindcss/typography": "^0.5.20",
     "@types/alpinejs": "^3.17.0",
-    "@types/react": "^18.3.31",
+    "@types/react": "^18.3.32",
     "@types/react-dom": "^18.3.7",
     "alpinejs": "^3.17.5",
-    "astro": "^7.4.12",
+    "astro": "^7.4.13",
     "astro-feather-icons": "^1.0.2",
     "astro-seo": "^0.8.4",
     "os": "^0.1.2",
@@ -39,10 +39,10 @@
     "tailwindcss": "^3.4.19"
   },
   "devDependencies": {
-    "@astrojs/node": "^11.1.9",
+    "@astrojs/node": "^11.1.14",
     "@testing-library/react": "^16.3.3",
     "vitest": "^4.1.12",
-    "wrangler": "^4.152.0"
+    "wrangler": "^4.168.0"
   },
   "pnpm": {
     "overrides": {
